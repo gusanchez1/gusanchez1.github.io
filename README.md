@@ -2,7 +2,11 @@
 
 Site pessoal de Gustavo Avelino Sanchez, estudante de Ciência da Computação (FAM) e desenvolvedor web em formação, em São Paulo.
 
-É uma página única feita com **React + Vite**, sem back-end, sem banco de dados e sem serviços pagos. Todo o conteúdo (textos, links, tecnologias, projetos e cursos) fica em arquivos de dados separados dos componentes, então dá para atualizar o site sem mexer no layout.
+- **Português:** https://gusanchez1.github.io/
+- **Inglês:** https://gusanchez1.github.io/en/
+- **Repositório:** https://github.com/gusanchez1/gusanchez1.github.io
+
+É uma página única, em dois idiomas, feita com **React + Vite**, sem back-end, sem banco de dados e sem serviços pagos. Todo o conteúdo (textos, links, tecnologias, projetos e cursos) fica em arquivos de dados separados dos componentes, então dá para atualizar o site sem mexer no layout. A publicação é automática: cada `git push` testa, gera e publica o site no GitHub Pages.
 
 ---
 
@@ -17,7 +21,7 @@ Site pessoal de Gustavo Avelino Sanchez, estudante de Ciência da Computação (
 7. [Publicação gratuita no GitHub Pages](#7-publicação-gratuita-no-github-pages)
 8. [Domínio próprio: gusanchez.dev.br (futuro)](#8-domínio-próprio-gusanchezdevbr-futuro)
 9. [Versão em inglês](#9-versão-em-inglês)
-10. [Pendências antes de divulgar](#10-pendências-antes-de-divulgar)
+10. [Situação e próximos passos](#10-situação-e-próximos-passos)
 
 ---
 
@@ -47,19 +51,37 @@ npm install        # instala as dependências (só na primeira vez)
 npm run dev        # abre o site em http://localhost:5173 e recarrega a cada alteração
 ```
 
+A versão em inglês fica em http://localhost:5173/en/. Para parar o servidor, use `Ctrl + C` no terminal.
+
 | Comando | O que faz |
 | --- | --- |
 | `npm run dev` | Servidor de desenvolvimento com recarregamento automático |
-| `npm test` | Testa os arquivos de conteúdo (links, campos obrigatórios, imagens que existem) |
+| `npm test` | Testa os arquivos de conteúdo nos dois idiomas (links, campos obrigatórios, imagens que existem, versões iguais) |
 | `npm run build` | Gera a versão de produção na pasta `dist/` |
-| `npm run preview` | Abre a versão de produção (`dist/`) em http://localhost:4173 |
+| `npm run preview` | Abre a versão de produção (`dist/`) em http://localhost:4173, igual à que vai para o ar |
 | `npm run check` | Roda os testes e o build, nessa ordem |
 
-Para ver o site no celular, na mesma rede Wi-Fi: `npm run dev -- --host` e abra o endereço "Network" que aparece no terminal.
+Para ver o site no celular, na mesma rede Wi-Fi: `npm run dev -- --host` e abra o endereço "Network" que aparece no terminal. Se o Windows perguntar sobre o firewall, permita o Node.js em redes privadas.
+
+### Fluxo para atualizar o site
+
+1. `npm run dev` e confira as mudanças no navegador (e no celular, se quiser).
+2. `npm test` para garantir que nada ficou quebrado.
+3. Publique:
+
+   ```bash
+   git add .
+   git commit -m "descreva o que mudou"
+   git push
+   ```
+
+Em um ou dois minutos a versão nova está no ar. Para ver o que mudou antes do commit, use o painel **Source Control** do VS Code (`Ctrl + Shift + G`) ou `git status` e `git diff` no terminal.
 
 ---
 
 ## 3. Estrutura de pastas
+
+A pasta no seu computador se chama `gusanchez-portfolio`; no GitHub, o repositório se chama `gusanchez1.github.io`.
 
 ```
 gusanchez-portfolio/
@@ -121,7 +143,7 @@ Tudo em [src/data/links.js](src/data/links.js). O mesmo endereço é usado no to
 | Contato: textos "Para recrutadores" e "Para negócios" e o assunto de cada e-mail | `contact.audiences` em [src/content/pt-BR/ui.js](src/content/pt-BR/ui.js) |
 | Título e descrição para o Google e para prévias de link | [index.html](index.html) (português) e [en/index.html](en/index.html) (inglês) |
 
-Ao avançar de semestre, atualize "6º semestre" em `profile.js` (aparece na apresentação, no texto "Sobre mim" e na ficha) e em `education.js`.
+Ao avançar de semestre, atualize "6º semestre" em `pt-BR/profile.js` (aparece na apresentação, no texto "Sobre mim" e na ficha) e em `pt-BR/education.js`, e faça o mesmo com "6th semester" nos arquivos de mesmo nome em `en/`.
 
 ### Foto
 
@@ -148,12 +170,12 @@ Em [src/content/pt-BR/projects.js](src/content/pt-BR/projects.js). Cada objeto d
 
 **Link do site e repositório:** preencha `demoUrl` e `repoUrl` quando existirem (precisam começar com `https://`); com `null`, o botão não aparece. `demoLabel` muda o texto do botão (no Nardelli Barber: "Ver site no ar") e `linksNote` é uma observação exibida logo abaixo. No Nardelli Barber, ela pede que ninguém faça agendamentos de teste, porque o site é o sistema real do cliente.
 
-**Capturas de tela:**
+**Capturas de tela:** as atuais do Nardelli Barber estão em `public/projects/nardelli-barber/`. As três primeiras (início, agendamento e celular) foram feitas nas páginas públicas do site no ar, só navegando, sem criar nenhum agendamento. As duas do painel vieram de uma cópia local do sistema, com um banco temporário e dados fictícios (nomes inventados e telefones no formato (11) 90000-00xx), que foi apagada depois. Para trocar ou adicionar capturas:
 
-1. Rode o projeto no computador **com dados fictícios** (por exemplo, o `npm run seed` do próprio Nardelli Barber). Não mostre nomes ou telefones de clientes reais nem as fotos de clientes do portfólio da barbearia: elas dependem de autorização de uso de imagem.
+1. Páginas públicas podem ser capturadas no site no ar, sem enviar formulários. Telas do painel, **só com dados fictícios**, rodando o projeto no computador com um banco separado do de produção, **nunca** no painel real do cliente. Também não mostre as fotos de clientes da página "Trabalhos": elas dependem de autorização de uso de imagem.
 2. Capture as telas no navegador. No Chrome, use F12 → ícone de celular/tablet para escolher o tamanho, e o menu ⋮ → "Capture screenshot". Uma largura de 1600 px é suficiente.
 3. Converta para **WebP** com boa compressão (por exemplo, em [squoosh.app](https://squoosh.app)), mirando menos de 200 KB por imagem.
-4. Salve em `public/projects/nardelli-barber/` e liste em `images`:
+4. Salve em `public/projects/nardelli-barber/` e liste em `images`, no `projects.js` **dos dois idiomas** (mesmo arquivo, com `alt` e `caption` traduzidos):
 
 ```js
 images: [
@@ -167,9 +189,9 @@ images: [
 ],
 ```
 
-A primeira imagem aparece grande e as outras em duas colunas. `width` e `height` são o tamanho real do arquivo: evitam que a página "pule" enquanto a imagem carrega. O teste confere se o arquivo existe e se tem `alt`.
+A primeira imagem aparece grande e as outras em pares, lado a lado. Para os pares ficarem alinhados, use o mesmo formato nas duas imagens de cada par (as atuais usam proporção de cerca de 1,7 : 1). Clicar numa imagem abre o arquivo em tamanho real numa nova aba. `width` e `height` são o tamanho real do arquivo: evitam que a página "pule" enquanto a imagem carrega. O teste confere se o arquivo existe e se tem `alt`.
 
-Sugestões de telas: página inicial, passo de data e horário do agendamento, confirmação com o link de cancelamento, início do painel (faturamento), agenda da semana e horários fixos.
+Outras telas que poderiam entrar: confirmação do agendamento com o link de cancelamento, relatórios e horários fixos do painel.
 
 ### Formação
 
@@ -221,6 +243,8 @@ As tags `og:image`, `og:url` e o link canônico precisam do endereço completo d
 - Foco do teclado sempre visível (contorno âmbar).
 - Menu do celular com `aria-expanded`; fecha com Esc e devolve o foco ao botão.
 - Links que abrem em nova aba avisam isso para leitores de tela.
+- Todas as imagens têm texto alternativo descritivo, nos dois idiomas.
+- O link de idioma (EN / PT) informa o idioma de destino (`hreflang` e `lang`) e tem um nome completo para leitores de tela.
 - O status das tecnologias usa forma (cheio/vazado) **e** texto, não só cor.
 - Com "Reduzir movimento" ativado no sistema, animações e rolagem suave são desligadas.
 - Contraste de cores verificado (Lighthouse: sem erros de contraste).
@@ -256,36 +280,19 @@ O GitHub Pages foi escolhido porque o código e o site ficam no mesmo lugar: rec
 
 > No plano gratuito do GitHub, o Pages só publica repositórios **públicos**. O código do portfólio não tem nada sensível, então pode ser público.
 
-### Passo a passo (primeira vez)
+### Como está publicado
 
-1. No GitHub, crie um repositório **público** chamado `gusanchez-portfolio`, sem README (o projeto já tem um).
-2. No terminal, dentro da pasta do projeto:
-
-   ```bash
-   git add .
-   git commit -m "Primeira versão do portfólio"
-   git branch -M main
-   git remote add origin https://github.com/gusanchez1/gusanchez-portfolio.git
-   git push -u origin main
-   ```
-
-3. No repositório: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-4. Abra a aba **Actions**. O workflow "Publicar no GitHub Pages" roda os testes, gera o build e publica. Se ele rodou antes do passo 3 e falhou, clique em **Run workflow** para rodar de novo.
-5. O site fica em **https://gusanchez1.github.io/gusanchez-portfolio/**.
-
-### Atualizações
-
-Toda vez que você fizer `git push` na branch `main`, o site é publicado de novo em um ou dois minutos. Se os testes falharem, nada é publicado e o site anterior continua no ar.
+- **Repositório:** `gusanchez1/gusanchez1.github.io`, público, branch `main`. Por ter o nome no formato `usuario.github.io`, ele é o "site de usuário" do GitHub e fica na raiz do endereço: **https://gusanchez1.github.io/**.
+- **Publicação:** o workflow [.github/workflows/deploy.yml](.github/workflows/deploy.yml) roda a cada `git push` na `main`. Ele instala as dependências, roda os testes, gera o build e publica. Se os testes falharem, nada é publicado e o site anterior continua no ar.
+- **Acompanhar:** na aba **Actions** do repositório, cada publicação aparece como "Publicar no GitHub Pages". Verde significa no ar; vermelho mostra o erro. Para publicar de novo sem mudar nada, use **Run workflow**.
+- **Configuração:** em **Settings → Pages**, a origem (Source) é **GitHub Actions**.
+- **Outros sites:** os sites dos seus outros repositórios continuam funcionando em subpastas, como https://gusanchez1.github.io/faculdade/.
 
 ### Como o caminho do site é resolvido
 
-Sem domínio próprio, o site fica em uma "subpasta" (`/gusanchez-portfolio/`); com domínio próprio, fica na raiz (`/`). O workflow pergunta ao GitHub qual é o caso (`actions/configure-pages`) e repassa ao build as variáveis `BASE_PATH` e `SITE_URL`. **Você não precisa mudar código ao trocar de endereço.**
+O workflow pergunta ao GitHub onde o site está publicado (`actions/configure-pages`) e repassa ao build duas variáveis: `BASE_PATH` (hoje `/`) e `SITE_URL` (hoje `https://gusanchez1.github.io`). Elas definem o caminho dos arquivos e os endereços completos das tags de SEO. **Se o endereço mudar (por exemplo, com o domínio próprio), não é preciso mudar código:** basta publicar de novo.
 
-> **Dica para testar no Windows:** o Git Bash transforma `/gusanchez-portfolio/` em um caminho do Windows. Para simular o build do GitHub Pages no computador, use o PowerShell:
-> `$env:BASE_PATH='/gusanchez-portfolio/'; npm run build; Remove-Item Env:BASE_PATH`
-> ou, no Git Bash: `MSYS_NO_PATHCONV=1 BASE_PATH=/gusanchez-portfolio/ npm run build`.
-
-**Endereço alternativo e mais curto:** se preferir `https://gusanchez1.github.io/` em vez de `.../gusanchez-portfolio/`, dê ao repositório o nome `gusanchez1.github.io`. Nada mais muda.
+> **Se um dia o site for para uma subpasta** (um repositório com outro nome, como `usuario.github.io/portfolio/`), também funciona sem mudar código. Para simular isso no computador, o Git Bash atrapalha (ele transforma `/portfolio/` num caminho do Windows); use o PowerShell: `$env:BASE_PATH='/portfolio/'; npm run build; Remove-Item Env:BASE_PATH`.
 
 ---
 
@@ -322,9 +329,11 @@ Sem domínio próprio, o site fica em uma "subpasta" (`/gusanchez-portfolio/`); 
 
 6. **Publicar de novo:** em **Actions → Publicar no GitHub Pages → Run workflow**. Assim o build passa a usar o caminho `/` e o endereço `https://gusanchez.dev.br` nas tags de SEO. Não é preciso alterar código.
 
-7. **Conferir:** abra `https://gusanchez.dev.br`, cole o link no LinkedIn para ver a prévia e atualize o endereço no seu perfil do LinkedIn, no GitHub e no currículo.
+7. **Conferir:** abra `https://gusanchez.dev.br` e `https://gusanchez.dev.br/en/`, cole os links no LinkedIn para ver a prévia e atualize o endereço no seu perfil do LinkedIn, no GitHub e no currículo.
 
 > Com GitHub Actions, o domínio fica salvo nas configurações do repositório. **Não** é necessário criar um arquivo `CNAME`.
+
+> Como o repositório é o seu site de usuário, os sites dos outros repositórios passam a abrir pelo domínio novo também (ex.: `gusanchez1.github.io/faculdade/` → `gusanchez.dev.br/faculdade/`). O GitHub redireciona os endereços antigos sozinho.
 
 ---
 
@@ -358,12 +367,25 @@ O site tem duas páginas com o mesmo código:
 
 ---
 
-## 10. Pendências antes de divulgar
+## 10. Situação e próximos passos
 
-- [ ] Adicionar o **currículo em PDF** ([veja como](#currículo-em-pdf-opcional)).
-- [x] Capturas do Nardelli Barber em `public/projects/nardelli-barber/`: páginas públicas do site no ar (início, agendamento e celular) e painel administrativo de uma cópia local com dados fictícios. Ao trocar ou adicionar capturas do painel, use sempre dados fictícios, nunca o painel real.
-- [ ] Ler o site inteiro uma vez e ajustar qualquer frase que não soe como você.
-- [ ] Publicar no GitHub Pages ([seção 7](#7-publicação-gratuita-no-github-pages)) e colocar o link no LinkedIn e no perfil do GitHub.
+**Feito**
+
+- [x] Site publicado no GitHub Pages, em português e em inglês ([seção 7](#7-publicação-gratuita-no-github-pages)).
+- [x] Projeto Nardelli Barber descrito a partir do código e do relato do desenvolvimento, com link para o site no ar.
+- [x] Capturas de tela do site e do painel (painel com dados fictícios).
 - [x] Versão em inglês em `/en/` ([seção 9](#9-versão-em-inglês)).
-- [ ] Ler a versão em inglês uma vez e ajustar qualquer frase que não soe como você.
+
+**A fazer**
+
+- [ ] Adicionar o **currículo em PDF** ([veja como](#currículo-em-pdf-opcional)). Para vagas no exterior, vale ter uma versão em inglês.
+- [ ] Colocar os links no **LinkedIn** (campo "Site" e seção "Destaque"), no repositório (engrenagem ao lado de **About** → "Use your GitHub Pages website") e no perfil do GitHub. Se o LinkedIn mostrar uma prévia antiga, use o [Post Inspector](https://www.linkedin.com/post-inspector/).
+- [ ] Manter cargos, datas e textos iguais no site, no LinkedIn e no currículo.
+- [ ] Ler as duas versões do site uma vez e ajustar qualquer frase que não soe como você.
+
+**De tempos em tempos**
+
 - [ ] Ao mudar de semestre, atualizar "6º semestre" / "6th semester" nos arquivos de conteúdo dos dois idiomas.
+- [ ] Quando ganhar prática em uma tecnologia, trocar o status dela de "Em aprendizado" para "Experiência prática" ([Tecnologias](#tecnologias)).
+- [ ] Ao terminar um projeto em que você tenha participação suficiente para explicar o código, cadastrá-lo em `projects.js` ([Projetos](#projetos)).
+- [ ] Quando comprar o domínio, seguir a [seção 8](#8-domínio-próprio-gusanchezdevbr-futuro).
