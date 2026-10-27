@@ -1,0 +1,275 @@
+.project {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.project + .project {
+  margin-top: var(--section-space);
+}
+
+/* Cabeçalho */
+.project__head {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 960px) {
+  .project__head {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    align-items: end;
+    gap: 4rem;
+  }
+}
+
+.project__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.project__name {
+  font-size: clamp(2.75rem, 8vw, 6rem);
+  font-weight: 650;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.project__tagline {
+  max-width: 40ch;
+  margin-top: 1.25rem;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.project__links {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.project__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.project__links-note {
+  padding-left: 1rem;
+  border-left: 1px solid var(--line-strong);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.project__links-note .link {
+  white-space: nowrap;
+}
+
+/* Ficha do projeto */
+.project__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.project__meta > div {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 1.25rem 1.1rem 0;
+}
+
+.project__meta dd {
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+/* Capturas de tela: a primeira grande, as outras em duas colunas */
+.gallery {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery__item:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.gallery__item img {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.gallery__item figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+/* Corpo do estudo de caso */
+.project__body {
+  border-bottom: 1px solid var(--line);
+}
+
+.project__lead {
+  max-width: 62ch;
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  line-height: 1.55;
+}
+
+.project__prose {
+  max-width: 64ch;
+}
+
+.project__prose p {
+  color: var(--text-muted);
+}
+
+.project__prose p:first-child {
+  color: var(--text);
+}
+
+.project__prose p + p {
+  margin-top: 1rem;
+}
+
+/* Duas colunas de listas (site público / painel) */
+.columns {
+  display: grid;
+  gap: 2rem 3rem;
+}
+
+@media (min-width: 720px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.columns__title {
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* Passos do agendamento e decisões técnicas */
+.steps,
+.decisions {
+  display: grid;
+  gap: 2rem 2.5rem;
+}
+
+@media (min-width: 720px) {
+  .steps,
+  .decisions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.steps__item,
+.decisions__item {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+}
+
+.steps__item p,
+.decisions__item p {
+  font-size: 0.97rem;
+  color: var(--text-muted);
+}
+
+.steps__number {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.steps__title,
+.decisions__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Situação atual */
+.progress {
+  display: grid;
+  gap: 2rem 2.5rem;
+}
+
+@media (min-width: 720px) {
+  .progress {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.progress__title {
+  margin-bottom: 0.9rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.progress li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 0.7rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.progress li + li {
+  margin-top: 0.75rem;
+}
+
+.progress .icon {
+  margin-top: 0.2rem;
+  color: var(--accent);
+}
+
+.progress__mark {
+  width: 10px;
+  height: 10px;
+  margin: 0.45rem 0 0 3px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+}
+
+.progress__group--limit .progress__mark {
+  width: 10px;
+  height: 1.5px;
+  margin-top: 0.7rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--text-faint);
+}
+
+/* Tecnologias do projeto */
+.stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.stack__group {
+  display: grid;
+  gap: 0.6rem;
+}
+
+@media (min-width: 720px) {
+  .stack__group {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+}

@@ -1,0 +1,214 @@
+.hero {
+  /* Ocupa a primeira tela, sem ficar gigante em monitores altos */
+  min-height: min(calc(100svh - var(--header-h)), 960px);
+  display: flex;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(2rem, 6vw, 4.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.hero__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.status__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.hero__clock {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-faint);
+}
+
+.hero__clock time {
+  color: var(--text-muted);
+}
+
+/* Celular e tablet: foto pequena, nome e texto um abaixo do outro */
+.hero__layout {
+  display: grid;
+  grid-template-areas:
+    'name'
+    'body';
+  row-gap: clamp(1.75rem, 5vw, 3.5rem);
+}
+
+.hero--photo .hero__layout {
+  grid-template-areas:
+    'photo'
+    'name'
+    'body';
+}
+
+.hero__photo {
+  grid-area: photo;
+  width: clamp(112px, 30vw, 180px);
+}
+
+.hero__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.hero__name {
+  grid-area: name;
+  font-size: clamp(3rem, 10.4vw, 8.25rem);
+  font-weight: 650;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.hero__name > span {
+  display: block;
+}
+
+.hero__dot {
+  color: var(--accent);
+}
+
+.hero__body {
+  grid-area: body;
+}
+
+/* Telas largas: foto à direita, ao lado do nome e do texto */
+@media (min-width: 960px) {
+  .hero--photo .hero__layout {
+    grid-template-columns: minmax(0, 1fr) clamp(260px, 25vw, 340px);
+    grid-template-areas:
+      'name photo'
+      'body photo';
+    column-gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: start;
+  }
+
+  .hero--photo .hero__name {
+    font-size: clamp(3rem, 7.4vw, 7.25rem);
+  }
+
+  .hero__photo {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+
+.hero__intro {
+  max-width: 30ch;
+  font-size: clamp(1.3rem, 2.3vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.hero__description {
+  max-width: 58ch;
+  margin-top: 1rem;
+  color: var(--text-muted);
+}
+
+/* Chamada para o projeto em destaque */
+.hero__featured {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 58ch;
+  margin-top: 1.75rem;
+  padding: 0.9rem 0 0.9rem 1rem;
+  border-left: 2px solid var(--accent);
+  border-radius: 0;
+}
+
+.hero__featured-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.hero__featured-text .icon {
+  flex: none;
+  transition: transform 0.25s var(--ease);
+}
+
+.hero__featured:hover .hero__featured-text {
+  color: var(--accent);
+}
+
+.hero__featured:hover .icon {
+  transform: translateX(3px);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.hero__scroll {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-faint);
+  transition: color 0.2s;
+}
+
+.hero__scroll:hover {
+  color: var(--text);
+}
+
+/* Entrada suave dos blocos do topo, uma única vez ao carregar a página */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: rise 0.8s var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .hero__scroll .icon {
+    animation: nudge 1.6s var(--ease) 1.6s 2;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes nudge {
+  50% {
+    transform: translateY(4px);
+  }
+}

@@ -1,0 +1,152 @@
+.arch {
+  --gap: 3.25rem;
+  display: grid;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  /* Fundo pontilhado, como papel de projeto */
+  background-color: var(--bg-elevated);
+  background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.arch__layers {
+  display: grid;
+  gap: var(--gap);
+}
+
+.arch__layer {
+  position: relative;
+}
+
+.arch__node {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.arch__tech {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.arch__detail {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Ligação com a camada seguinte: vertical no celular... */
+.arch__connector {
+  position: absolute;
+  top: 100%;
+  left: 1.5rem;
+  height: var(--gap);
+  display: flex;
+  align-items: center;
+}
+
+.arch__connector::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 3px;
+  left: 0;
+  border-left: 1.5px dashed var(--accent);
+}
+
+.arch__connector::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: -3.5px;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  transform: rotate(45deg);
+}
+
+.arch__connector span {
+  padding-left: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+/* ...e horizontal em telas largas */
+@media (min-width: 880px) {
+  .arch {
+    --gap: 6rem;
+  }
+
+  .arch__layers {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+
+  .arch__connector {
+    top: 50%;
+    left: 100%;
+    width: var(--gap);
+    height: auto;
+    justify-content: center;
+  }
+
+  .arch__connector::before {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 3px;
+    border-left: 0;
+    border-top: 1.5px dashed var(--accent);
+  }
+
+  .arch__connector::after {
+    top: calc(50% - 3.5px);
+    bottom: auto;
+    left: auto;
+    right: 2px;
+    transform: rotate(-45deg);
+  }
+
+  .arch__connector span {
+    padding: 0 0 1.6rem;
+  }
+}
+
+.arch__integrations {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--line-strong);
+}
+
+@media (min-width: 880px) {
+  .arch__integrations {
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 2rem;
+  }
+}
+
+.arch__integrations ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.arch__integrations strong {
+  font-weight: 600;
+  color: var(--text);
+}
