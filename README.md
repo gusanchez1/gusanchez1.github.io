@@ -288,7 +288,9 @@ O GitHub Pages foi escolhido porque o código e o site ficam no mesmo lugar: rec
 - **Repositório:** `gusanchez1/gusanchez1.github.io`, público, branch `main`. Por ter o nome no formato `usuario.github.io`, ele é o "site de usuário" do GitHub e fica na raiz do endereço: **https://gusanchez1.github.io/**.
 - **Publicação:** o workflow [.github/workflows/deploy.yml](.github/workflows/deploy.yml) roda a cada `git push` na `main`. Ele instala as dependências, roda os testes, gera o build e publica. Se os testes falharem, nada é publicado e o site anterior continua no ar.
 - **Acompanhar:** na aba **Actions** do repositório, cada publicação aparece como "Publicar no GitHub Pages". Verde significa no ar; vermelho mostra o erro. Para publicar de novo sem mudar nada, use **Run workflow**.
-- **Configuração:** em **Settings → Pages**, a origem (Source) é **GitHub Actions**.
+- **Configuração:** em **Settings → Pages → Build and deployment**, a origem (Source) **precisa** ser **GitHub Actions**. Repositórios no formato `usuario.github.io` vêm com "Deploy from a branch", que publica o código-fonte cru. Nesse modo, a cada push, a publicação automática do GitHub disputa com o workflow, e o site pode ficar **em branco**.
+
+> **Site em branco?** Se `https://gusanchez1.github.io/README.md` abrir no navegador, o GitHub está publicando o código-fonte. Corrija em **Settings → Pages → Source: GitHub Actions** e publique de novo em **Actions → Publicar no GitHub Pages → Run workflow**. Na aba Actions, só deve aparecer a execução "Publicar no GitHub Pages" a cada push, sem uma "pages build and deployment" separada rodando ao mesmo tempo.
 - **Outros sites:** os sites dos seus outros repositórios continuam funcionando em subpastas, como https://gusanchez1.github.io/faculdade/.
 
 ### Como o caminho do site é resolvido
