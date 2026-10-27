@@ -49,14 +49,17 @@ export default function ProjectCase({ project }) {
         <div className="gallery" aria-label={t.gallery} role="group">
           {images.map((image) => (
             <figure key={image.src} className="gallery__item">
-              <img
-                src={asset(image.src)}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                loading="lazy"
-                decoding="async"
-              />
+              {/* Clicar abre a imagem em tamanho real, numa nova aba */}
+              <ExternalLink className="gallery__link" href={asset(image.src)}>
+                <img
+                  src={asset(image.src)}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </ExternalLink>
               {image.caption && <figcaption>{image.caption}</figcaption>}
             </figure>
           ))}

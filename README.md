@@ -351,7 +351,7 @@ O resultado são dois endereços (`/` e `/en/`), o que é melhor para SEO do que
 ## 10. Pendências antes de divulgar
 
 - [ ] Adicionar o **currículo em PDF** ([veja como](#currículo-em-pdf-opcional)).
-- [ ] Adicionar **capturas de tela reais** do Nardelli Barber, com dados fictícios ([veja como](#projetos)).
+- [x] Capturas do Nardelli Barber em `public/projects/nardelli-barber/`: páginas públicas do site no ar (início, agendamento e celular) e painel administrativo de uma cópia local com dados fictícios. Ao trocar ou adicionar capturas do painel, use sempre dados fictícios, nunca o painel real.
 - [ ] Ler o site inteiro uma vez e ajustar qualquer frase que não soe como você.
 - [ ] Publicar no GitHub Pages ([seção 7](#7-publicação-gratuita-no-github-pages)) e colocar o link no LinkedIn e no perfil do GitHub.
 - [ ] Ao mudar de semestre, atualizar "6º semestre" nos arquivos de conteúdo.

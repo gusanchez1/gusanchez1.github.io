@@ -30,7 +30,46 @@ export const projects = [
 
     // Capturas de tela reais. Coloque os arquivos em public/projects/nardelli-barber/ e liste aqui:
     // { src: 'projects/nardelli-barber/agenda.webp', alt: 'O que a tela mostra', caption: 'Legenda', width: 1600, height: 1000 }
-    images: [],
+    // Capturas feitas em 27/10/2026. As três primeiras são do site no ar (páginas públicas, sem criar
+    // nenhum agendamento); as do painel vêm de uma cópia local com dados fictícios.
+    images: [
+      {
+        src: 'projects/nardelli-barber/nardelli-inicio.webp',
+        alt: 'Página inicial do Nardelli Barber: chamada de boas-vindas, botões para agendar e falar com o barbeiro, logotipo e faixa com horário de atendimento, endereço e WhatsApp',
+        caption: 'Página inicial',
+        width: 1600,
+        height: 1000,
+      },
+      {
+        src: 'projects/nardelli-barber/nardelli-agendamento.webp',
+        alt: 'Passo 2 do agendamento: calendário com o dia selecionado, horários livres separados em manhã e tarde e o resumo com serviço, data, duração e valor',
+        caption: 'Agendamento: só aparecem os horários em que o serviço inteiro cabe',
+        width: 1160,
+        height: 682,
+      },
+      {
+        src: 'projects/nardelli-barber/nardelli-celular.webp',
+        alt: 'Duas telas do site no celular: a página inicial e a escolha de horário, com a barra inferior mostrando o total e o botão Continuar',
+        caption: 'Versão para celular',
+        width: 1160,
+        height: 682,
+      },
+      // Painel: capturado de uma cópia local do sistema, com banco temporário e dados fictícios
+      {
+        src: 'projects/nardelli-barber/nardelli-painel-inicio.webp',
+        alt: 'Início do painel administrativo com dados fictícios: faturamento de hoje, da semana e do mês, lembretes, agenda do dia e atalhos para clientes sumidos, horários fixos e faltas',
+        caption: 'Painel: faturamento e agenda do dia (dados fictícios)',
+        width: 1600,
+        height: 941,
+      },
+      {
+        src: 'projects/nardelli-barber/nardelli-painel-agenda.webp',
+        alt: 'Agenda semanal do painel com dados fictícios: dias fechados marcados, atendimentos por horário e horários fixos indicados com um ícone de repetição',
+        caption: 'Painel: agenda da semana com horários fixos (dados fictícios)',
+        width: 1600,
+        height: 941,
+      },
+    ],
 
     problem: [
       'O Daniel atende dentro de uma barbearia, mas com agenda e preços próprios, e dependia de um sistema de agendamento de terceiros. O objetivo foi levar para um sistema próprio tudo o que ele já usava, mais os recursos que faltavam: o cliente marca pelo site, vendo só horários realmente livres, e o barbeiro administra agenda, clientes fixos, preços e faturamento em um painel feito para a rotina dele.',

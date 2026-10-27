@@ -103,11 +103,22 @@
   }
 }
 
+.gallery__link {
+  display: block;
+  border-radius: var(--radius-sm);
+  cursor: zoom-in;
+}
+
 .gallery__item img {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--surface);
+  transition: border-color 0.2s;
+}
+
+.gallery__link:hover img {
+  border-color: var(--accent);
 }
 
 .gallery__item figcaption {
