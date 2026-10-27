@@ -92,6 +92,7 @@ gusanchez-portfolio/
 │   ├── images/                 # sua foto (800 px e versão de 400 px para o celular)
 │   ├── projects/               # capturas de tela dos projetos
 │   ├── favicon.svg             # ícone da aba
+│   ├── favicon.ico             # o mesmo ícone em .ico (16, 32 e 48 px), para navegadores que não usam SVG
 │   ├── apple-touch-icon.png    # ícone ao salvar o site na tela inicial do celular
 │   ├── og-image.png            # prévia ao compartilhar o link em português (1200 × 630)
 │   ├── og-image-en.png         # prévia ao compartilhar o link em inglês
@@ -215,7 +216,9 @@ As tags `og:image`, `og:url` e o link canônico precisam do endereço completo d
 
 ### Favicon
 
-`public/favicon.svg` (aba do navegador) e `public/apple-touch-icon.png` (180 × 180, tela inicial do iPhone). O monograma é o mesmo de [src/components/Logo.jsx](src/components/Logo.jsx).
+`public/favicon.svg` (aba do navegador), `public/favicon.ico` (o mesmo desenho em 16, 32 e 48 px, para navegadores e serviços que procuram `/favicon.ico`) e `public/apple-touch-icon.png` (180 × 180, tela inicial do iPhone). O monograma é o mesmo de [src/components/Logo.jsx](src/components/Logo.jsx). Se mudar o desenho, gere de novo o `.ico` e o `.png` a partir do SVG (por exemplo, em [realfavicongenerator.net](https://realfavicongenerator.net)).
+
+**O ícone não aparece no seu navegador?** O Chrome guarda os ícones dos sites num cache próprio, que demora a atualizar. O cache vale só para o seu navegador: os visitantes veem o ícone normalmente. Para conferir, abra o site numa **janela anônima** (`Ctrl + Shift + N`). Para corrigir no seu navegador, abra `https://gusanchez1.github.io/favicon.ico` numa aba, volte ao site e recarregue com `Ctrl + F5`. Se não resolver, feche todas as abas do site e abra de novo.
 
 ---
 
