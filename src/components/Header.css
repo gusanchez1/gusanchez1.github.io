@@ -83,6 +83,33 @@
   display: none;
 }
 
+/* Link de idioma (EN / PT) */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 0.75rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.lang-switch:hover {
+  color: var(--accent);
+}
+
+.lang-switch--desktop {
+  margin-left: 0.25rem;
+}
+
+.lang-switch--mobile {
+  display: none;
+}
+
 .menu-button {
   display: none;
   align-items: center;
@@ -98,6 +125,18 @@
 @media (max-width: 767px) {
   .menu-button {
     display: inline-flex;
+  }
+
+  .lang-switch--mobile {
+    display: inline-flex;
+    min-height: 44px;
+    margin-left: auto;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+  }
+
+  .nav__lang {
+    display: none;
   }
 
   .nav {

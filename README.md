@@ -16,7 +16,7 @@ Site pessoal de Gustavo Avelino Sanchez, estudante de Ciência da Computação (
 6. [Acessibilidade, desempenho e SEO](#6-acessibilidade-desempenho-e-seo)
 7. [Publicação gratuita no GitHub Pages](#7-publicação-gratuita-no-github-pages)
 8. [Domínio próprio: gusanchez.dev.br (futuro)](#8-domínio-próprio-gusanchezdevbr-futuro)
-9. [Versão em inglês (futuro)](#9-versão-em-inglês-futuro)
+9. [Versão em inglês](#9-versão-em-inglês)
 10. [Pendências antes de divulgar](#10-pendências-antes-de-divulgar)
 
 ---
@@ -63,27 +63,31 @@ Para ver o site no celular, na mesma rede Wi-Fi: `npm run dev -- --host` e abra 
 
 ```
 gusanchez-portfolio/
-├── index.html                  # título, descrição e metadados de SEO
-├── vite.config.js              # caminho base do site e tags que dependem da URL final
+├── index.html                  # página em português: título, descrição e metadados de SEO
+├── en/index.html               # página em inglês (/en/): o mesmo, em inglês
+├── vite.config.js              # caminho base, as duas páginas e as tags que dependem da URL final
 ├── public/                     # arquivos copiados como estão para o site
 │   ├── images/                 # sua foto (800 px e versão de 400 px para o celular)
+│   ├── projects/               # capturas de tela dos projetos
 │   ├── favicon.svg             # ícone da aba
 │   ├── apple-touch-icon.png    # ícone ao salvar o site na tela inicial do celular
-│   ├── og-image.png            # imagem de prévia ao compartilhar o link (1200 × 630)
+│   ├── og-image.png            # prévia ao compartilhar o link em português (1200 × 630)
+│   ├── og-image-en.png         # prévia ao compartilhar o link em inglês
 │   └── robots.txt
-├── scripts/og-image.html       # modelo usado para gerar a og-image.png
-├── tests/content.test.js       # testes dos arquivos de conteúdo
+├── scripts/                    # modelos usados para gerar as imagens de prévia
+├── tests/content.test.js       # testes dos arquivos de conteúdo (nos dois idiomas)
 ├── .github/workflows/deploy.yml  # publicação automática no GitHub Pages
 └── src/
-    ├── data/links.js           # ← e-mail, GitHub, LinkedIn, Instagram, currículo
+    ├── data/links.js           # ← e-mail, GitHub, LinkedIn, Instagram, currículo (iguais nos dois idiomas)
     ├── content/
-    │   ├── index.js            # escolhe o idioma (hoje, só pt-BR)
-    │   └── pt-BR/              # ← TODOS os textos do site
-    │       ├── profile.js      #   apresentação, foto, sobre mim, ficha rápida, trajetória
-    │       ├── skills.js       #   tecnologias
-    │       ├── projects.js     #   projetos
-    │       ├── education.js    #   faculdade, cursos e idiomas
-    │       └── ui.js           #   menu, títulos das seções, botões, contato, rodapé
+    │   ├── index.js            # escolhe o idioma pelo lang da página
+    │   ├── pt-BR/              # ← TODOS os textos em português
+    │   │   ├── profile.js      #   apresentação, foto, sobre mim, ficha rápida, trajetória
+    │   │   ├── skills.js       #   tecnologias
+    │   │   ├── projects.js     #   projetos
+    │   │   ├── education.js    #   faculdade, cursos e idiomas
+    │   │   └── ui.js           #   menu, títulos das seções, botões, contato, rodapé
+    │   └── en/                 # ← os mesmos arquivos, em inglês
     ├── sections/               # as seções da página (Hero, About, Skills, Projects, Education, Contact)
     ├── components/             # peças reutilizáveis (Header, Footer, Section, ProjectCase, Icon...)
     ├── hooks/                  # seção ativa no menu e relógio de São Paulo
@@ -101,6 +105,8 @@ Regra geral: **para mudar texto ou link, edite `src/data` ou `src/content`**. Os
 
 Depois de qualquer alteração, rode `npm test` para conferir se nada ficou faltando.
 
+> **Dois idiomas:** cada texto existe em `src/content/pt-BR/` e em `src/content/en/`, com os mesmos nomes de arquivo e de campo. Ao mudar um texto, mude nos dois. Os caminhos abaixo apontam para o português; o equivalente em inglês fica no arquivo de mesmo nome dentro de `en/`. O `npm test` avisa se as versões ficarem diferentes (um item a mais, uma imagem trocada só de um lado etc.).
+
 ### Links e contato
 
 Tudo em [src/data/links.js](src/data/links.js). O mesmo endereço é usado no topo, no contato, no rodapé e nos dados de SEO.
@@ -113,7 +119,7 @@ Tudo em [src/data/links.js](src/data/links.js). O mesmo endereço é usado no to
 | Texto "Sobre mim", ficha "Em resumo" e trajetória profissional (linha de metrô) | [src/content/pt-BR/profile.js](src/content/pt-BR/profile.js) |
 | Títulos das seções, itens do menu, botões, rodapé | [src/content/pt-BR/ui.js](src/content/pt-BR/ui.js) |
 | Contato: textos "Para recrutadores" e "Para negócios" e o assunto de cada e-mail | `contact.audiences` em [src/content/pt-BR/ui.js](src/content/pt-BR/ui.js) |
-| Título e descrição para o Google e para prévias de link | [index.html](index.html) |
+| Título e descrição para o Google e para prévias de link | [index.html](index.html) (português) e [en/index.html](en/index.html) (inglês) |
 
 Ao avançar de semestre, atualize "6º semestre" em `profile.js` (aparece na apresentação, no texto "Sobre mim" e na ficha) e em `education.js`.
 
@@ -181,7 +187,7 @@ Aparecem dois botões: "Currículo (PDF)" no topo da página e "Currículo · Ab
 
 ### Imagem de compartilhamento (Open Graph)
 
-`public/og-image.png` (1200 × 630 px) é a prévia exibida quando o link é colado no LinkedIn, WhatsApp etc. Ela foi gerada a partir de [scripts/og-image.html](scripts/og-image.html); as instruções para gerar de novo estão no topo desse arquivo. Você também pode trocá-la por qualquer imagem 1200 × 630 com o mesmo nome.
+`public/og-image.png` (1200 × 630 px) é a prévia exibida quando o link é colado no LinkedIn, WhatsApp etc. A página em inglês usa `public/og-image-en.png`. Elas foram geradas a partir de [scripts/og-image.html](scripts/og-image.html) e [scripts/og-image-en.html](scripts/og-image-en.html); as instruções para gerar de novo estão no topo desses arquivos. Você também pode trocá-las por qualquer imagem 1200 × 630 com o mesmo nome.
 
 As tags `og:image`, `og:url` e o link canônico precisam do endereço completo do site, então são acrescentadas **no build de publicação** (veja `seoTags` no [vite.config.js](vite.config.js)). No computador elas não aparecem, e isso é esperado.
 
@@ -225,10 +231,12 @@ As tags `og:image`, `og:url` e o link canônico precisam do endereço completo d
 
 | | Desempenho | Acessibilidade | Boas práticas | SEO |
 | --- | --- | --- | --- | --- |
-| Desktop | 100 | 100 | 100 | 100 |
-| Celular (4G simulado) | 96 | 100 | 100 | 100 |
+| Português · desktop | 100 | 100 | 100 | 100 |
+| Português · celular (4G simulado) | 96 | 100 | 100 | 100 |
+| Inglês · desktop | 100 | 100 | 100 | 100 |
+| Inglês · celular (4G simulado) | 95 | 100 | 100 | 100 |
 
-**SEO:** título, descrição, idioma `pt-BR`, Open Graph, `robots.txt` e dados estruturados `schema.org/Person` (com nome, cidade, perfis e tecnologias, montados a partir dos arquivos de conteúdo). Isso ajuda os buscadores a entender a página, mas não garante posição em resultados de busca.
+**SEO:** cada página tem título, descrição, idioma (`pt-BR` ou `en`), Open Graph e dados estruturados `schema.org/Person` (com nome, cidade, perfis e tecnologias, montados a partir dos arquivos de conteúdo), além de `robots.txt`. As tags `hreflang` avisam aos buscadores que as duas páginas são traduções uma da outra. Isso ajuda os buscadores a entender o site, mas não garante posição em resultados de busca.
 
 ---
 
@@ -320,31 +328,33 @@ Sem domínio próprio, o site fica em uma "subpasta" (`/gusanchez-portfolio/`); 
 
 ---
 
-## 9. Versão em inglês (futuro)
+## 9. Versão em inglês
 
-O projeto já foi organizado para isso: nenhum texto está escrito dentro dos componentes. Um caminho simples:
+O site tem duas páginas com o mesmo código:
 
-1. Copie `src/content/pt-BR/` para `src/content/en/` e traduza **apenas os valores** (mantenha os nomes dos campos). Nomes de tecnologias, cursos e instituições (The Web Developer Bootcamp, Curso em Vídeo, Cultura Inglesa, FAM, Fundação Faculdade de Medicina) continuam como estão.
-2. Em `src/content/index.js`, escolha o idioma pelo atributo `lang` da página:
+| Idioma | Endereço | HTML | Textos |
+| --- | --- | --- | --- |
+| Português | `https://gusanchez1.github.io/` | [index.html](index.html) | [src/content/pt-BR/](src/content/pt-BR/) |
+| Inglês | `https://gusanchez1.github.io/en/` | [en/index.html](en/index.html) | [src/content/en/](src/content/en/) |
 
-   ```js
-   import * as ptBR from './pt-BR/index.js';
-   import * as en from './en/index.js';
+**Como funciona:**
 
-   const lang = typeof document !== 'undefined' ? document.documentElement.lang : 'pt-BR';
-   export const locale = lang === 'en' ? 'en' : 'pt-BR';
-   export const content = locale === 'en' ? en : ptBR;
-   ```
+- Cada HTML define o idioma no `<html lang="...">`. O [src/content/index.js](src/content/index.js) lê esse atributo e entrega os textos do idioma certo aos componentes.
+- O `vite.config.js` gera as duas páginas (`dist/index.html` e `dist/en/index.html`) e acrescenta a cada uma o link canônico, a imagem de prévia no idioma certo e as tags `hreflang`, que ligam uma versão à outra para os buscadores.
+- O menu tem um link **EN** / **PT** para a outra versão. No celular, ele fica ao lado do botão Menu.
+- As âncoras também são traduzidas: `#sobre`, `#projetos`… em português e `#about`, `#projects`… em inglês. São definidas em `sections` e `hero.id`, nos arquivos `ui.js`.
+- Ter dois endereços, em vez de trocar o idioma só com JavaScript, é melhor para SEO: cada versão aparece na busca no idioma de quem procura.
 
-3. Crie `en/index.html` (cópia do `index.html` com `lang="en"`, título e descrição em inglês) e registre as duas páginas no `vite.config.js`:
+**Cuidados ao editar:**
 
-   ```js
-   build: { rollupOptions: { input: { main: 'index.html', en: 'en/index.html' } } },
-   ```
+- Mude o texto nos **dois** idiomas. O `npm test` compara as versões e falha se uma tiver um item a mais, um campo faltando, ou um link, id ou caminho de imagem diferente.
+- O título e a descrição que aparecem no Google ficam nos HTMLs: `index.html` (português) e `en/index.html` (inglês).
+- Nomes de cursos e instituições (The Web Developer Bootcamp, Curso em Vídeo, Cultura Inglesa, FAM, Fundação Faculdade de Medicina) continuam no original. Na versão em inglês, alguns ganharam uma explicação curta, como "Curso em Vídeo (Brazilian online course)".
+- O currículo em PDF é o mesmo nas duas páginas. Se um dia tiver um currículo em inglês, dá para separar o link por idioma.
 
-4. Adicione no menu um link "EN" / "PT" apontando para a outra versão e as tags `<link rel="alternate" hreflang="...">` nas duas páginas.
+**Para mandar a recrutadores de fora**, use direto o link `https://gusanchez1.github.io/en/` (ou `https://gusanchez.dev.br/en/`, quando tiver o domínio).
 
-O resultado são dois endereços (`/` e `/en/`), o que é melhor para SEO do que trocar o idioma só com JavaScript.
+**Para adicionar um terceiro idioma:** crie a pasta em `src/content/` (ex.: `es/`), registre-a em `locales` no `src/content/index.js`, crie o HTML (ex.: `es/index.html`), acrescente a página em `pages` no `vite.config.js` e ajuste o link de idioma em `ui.languageSwitch`.
 
 ---
 
@@ -354,4 +364,6 @@ O resultado são dois endereços (`/` e `/en/`), o que é melhor para SEO do que
 - [x] Capturas do Nardelli Barber em `public/projects/nardelli-barber/`: páginas públicas do site no ar (início, agendamento e celular) e painel administrativo de uma cópia local com dados fictícios. Ao trocar ou adicionar capturas do painel, use sempre dados fictícios, nunca o painel real.
 - [ ] Ler o site inteiro uma vez e ajustar qualquer frase que não soe como você.
 - [ ] Publicar no GitHub Pages ([seção 7](#7-publicação-gratuita-no-github-pages)) e colocar o link no LinkedIn e no perfil do GitHub.
-- [ ] Ao mudar de semestre, atualizar "6º semestre" nos arquivos de conteúdo.
+- [x] Versão em inglês em `/en/` ([seção 9](#9-versão-em-inglês)).
+- [ ] Ler a versão em inglês uma vez e ajustar qualquer frase que não soe como você.
+- [ ] Ao mudar de semestre, atualizar "6º semestre" / "6th semester" nos arquivos de conteúdo dos dois idiomas.

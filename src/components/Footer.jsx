@@ -34,12 +34,12 @@ export default function Footer() {
           </li>
           <li>
             <a className="footer__link" href={mailto(ui.contact.emailSubject)}>
-              E-mail
+              {ui.footer.email}
             </a>
           </li>
         </ul>
 
-        <a className="footer__top" href="#inicio">
+        <a className="footer__top" href={`#${ui.hero.id}`}>
           {ui.footer.backToTop}
           <Icon name="arrow-up" size={16} />
         </a>

@@ -1,4 +1,4 @@
-import { content } from '../content/index.js';
+import { content, locale } from '../content/index.js';
 import { links } from '../data/links.js';
 import { asset } from '../lib/asset.js';
 import { useCurrentTime } from '../hooks/useCurrentTime.js';
@@ -14,7 +14,7 @@ export default function Hero() {
   const { photo } = profile;
 
   return (
-    <section id="inicio" className={`hero${photo ? ' hero--photo' : ''}`} aria-labelledby="inicio-titulo">
+    <section id={ui.hero.id} className={`hero${photo ? ' hero--photo' : ''}`} aria-labelledby="hero-titulo">
       <div className="container hero__inner">
         <div className="hero__top reveal" style={{ '--i': 0 }}>
           <p className="status">
@@ -41,7 +41,7 @@ export default function Hero() {
             </figure>
           )}
 
-          <h1 id="inicio-titulo" className="hero__name reveal" style={{ '--i': 1 }}>
+          <h1 id="hero-titulo" className="hero__name reveal" style={{ '--i': 1 }}>
             <span>{firstName}</span> <span>
               {lastNames.join(' ')}
               <span className="hero__dot">.</span>
@@ -99,8 +99,9 @@ export default function Hero() {
 // Hora local em São Paulo, útil para recrutadores de outros fusos
 function LocalTime() {
   const now = useCurrentTime();
-  const time = new Intl.DateTimeFormat('pt-BR', {
-    hour: '2-digit',
+  // Formato da hora no idioma da página: "18:51" em português, "6:51 PM" em inglês
+  const time = new Intl.DateTimeFormat(locale, {
+    hour: 'numeric',
     minute: '2-digit',
     timeZone: profile.timeZone,
   }).format(now);

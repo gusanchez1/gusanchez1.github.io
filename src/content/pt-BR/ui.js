@@ -5,8 +5,12 @@ export const ui = {
   skipLink: 'Pular para o conteúdo',
   newTab: '(abre em nova aba)',
   menu: { open: 'Abrir menu', close: 'Fechar menu', label: 'Menu', nav: 'Navegação principal' },
+  // Link para a versão no outro idioma (caminho relativo à raiz do site)
+  languageSwitch: { label: 'EN', name: 'English version', href: 'en/', hreflang: 'en' },
 
   hero: {
+    // Âncora do topo da página (usada pelo logo e pelo "Voltar ao topo")
+    id: 'inicio',
     primaryCta: 'Explorar projetos',
     contactCta: 'Contato',
     resumeCta: 'Currículo (PDF)',
@@ -113,5 +117,6 @@ export const ui = {
   footer: {
     builtWith: 'Feito com React e Vite.',
     backToTop: 'Voltar ao topo',
+    email: 'E-mail',
   },
 };

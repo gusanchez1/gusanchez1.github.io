@@ -7,8 +7,19 @@ import './Header.css';
 
 const { ui, profile } = content;
 const navItems = Object.values(ui.sections);
-// O topo ("inicio") também é observado: lá nenhum item do menu fica destacado
-const observedIds = ['inicio', ...navItems.map((item) => item.id)];
+// O topo também é observado: lá nenhum item do menu fica destacado
+const observedIds = [ui.hero.id, ...navItems.map((item) => item.id)];
+
+// Link para a mesma página no outro idioma (ex.: "/" ↔ "/en/")
+function LanguageLink({ className }) {
+  const { label, name, href, hreflang } = ui.languageSwitch;
+  return (
+    <a className={`lang-switch ${className}`} href={import.meta.env.BASE_URL + href} hrefLang={hreflang} lang={hreflang}>
+      {label}
+      <span className="sr-only"> — {name}</span>
+    </a>
+  );
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -50,10 +61,13 @@ export default function Header() {
   return (
     <header ref={headerRef} className={`header${scrolled || menuOpen ? ' is-scrolled' : ''}`}>
       <div className="container header__inner">
-        <a className="brand" href="#inicio" onClick={() => setMenuOpen(false)}>
+        <a className="brand" href={`#${ui.hero.id}`} onClick={() => setMenuOpen(false)}>
           <Logo />
           <span>{profile.shortName}</span>
         </a>
+
+        {/* No celular o idioma fica sempre visível, ao lado do botão do menu */}
+        <LanguageLink className="lang-switch--mobile" />
 
         <button
           ref={buttonRef}
@@ -82,6 +96,9 @@ export default function Header() {
                 </a>
               </li>
             ))}
+            <li className="nav__lang">
+              <LanguageLink className="lang-switch--desktop" />
+            </li>
           </ul>
         </nav>
       </div>

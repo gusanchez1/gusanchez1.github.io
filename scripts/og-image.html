@@ -7,7 +7,7 @@
 
     "/c/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --hide-scrollbars \
       --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=3000 \
-      --screenshot="$(cygpath -w "$PWD/public/og-image.png")" "file:///$PWD/scripts/og-image.html"
+      --screenshot="$(cygpath -w "$PWD/public/og-image.png")" "file:///$(cygpath -m "$PWD")/scripts/og-image.html"
 
   Ou abra este arquivo no navegador e tire um print de 1200 × 630 px.
 -->
