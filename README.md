@@ -95,8 +95,8 @@ gusanchez-portfolio/
 │   ├── favicon.ico             # o mesmo ícone em .ico (16, 32 e 48 px), para navegadores que não usam SVG
 │   ├── apple-touch-icon.png    # ícone ao salvar o site na tela inicial do celular
 │   ├── og-image.png            # prévia ao compartilhar o link em português (1200 × 630)
-│   ├── og-image-en.png         # prévia ao compartilhar o link em inglês
-│   └── robots.txt
+│   └── og-image-en.png         # prévia ao compartilhar o link em inglês
+│                               # (robots.txt e sitemap.xml são gerados no build, pelo vite.config.js)
 ├── scripts/                    # modelos usados para gerar as imagens de prévia
 ├── tests/content.test.js       # testes dos arquivos de conteúdo (nos dois idiomas)
 ├── .github/workflows/deploy.yml  # publicação automática no GitHub Pages
@@ -263,7 +263,7 @@ As tags `og:image`, `og:url` e o link canônico precisam do endereço completo d
 | Inglês · desktop | 100 | 100 | 100 | 100 |
 | Inglês · celular (4G simulado) | 95 | 100 | 100 | 100 |
 
-**SEO:** cada página tem título, descrição, idioma (`pt-BR` ou `en`), Open Graph e dados estruturados `schema.org/Person` (com nome, cidade, perfis e tecnologias, montados a partir dos arquivos de conteúdo), além de `robots.txt`. As tags `hreflang` avisam aos buscadores que as duas páginas são traduções uma da outra. Isso ajuda os buscadores a entender o site, mas não garante posição em resultados de busca.
+**SEO:** cada página tem título, descrição, idioma (`pt-BR` ou `en`), Open Graph e dados estruturados `schema.org/Person` (com nome, cidade, perfis e tecnologias, montados a partir dos arquivos de conteúdo). As tags `hreflang` avisam aos buscadores que as duas páginas são traduções uma da outra. No build de publicação, o `vite.config.js` também gera o `robots.txt` e o mapa do site (`sitemap.xml`, com as duas páginas), usado pelo Google Search Console ([seção 7](#google-search-console)). Isso ajuda os buscadores a encontrar e entender o site, mas não garante posição em resultados de busca.
 
 ---
 
@@ -298,6 +298,17 @@ O GitHub Pages foi escolhido porque o código e o site ficam no mesmo lugar: rec
 O workflow pergunta ao GitHub onde o site está publicado (`actions/configure-pages`) e repassa ao build duas variáveis: `BASE_PATH` (hoje `/`) e `SITE_URL` (hoje `https://gusanchez1.github.io`). Elas definem o caminho dos arquivos e os endereços completos das tags de SEO. **Se o endereço mudar (por exemplo, com o domínio próprio), não é preciso mudar código:** basta publicar de novo.
 
 > **Se um dia o site for para uma subpasta** (um repositório com outro nome, como `usuario.github.io/portfolio/`), também funciona sem mudar código. Para simular isso no computador, o Git Bash atrapalha (ele transforma `/portfolio/` num caminho do Windows); use o PowerShell: `$env:BASE_PATH='/portfolio/'; npm run build; Remove-Item Env:BASE_PATH`.
+
+### Google Search Console
+
+O [Search Console](https://search.google.com/search-console) é a ferramenta gratuita do Google para avisar que o site existe, acompanhar se as páginas estão indexadas e ver por quais buscas as pessoas chegam até ele.
+
+1. **Propriedade:** em **Adicionar propriedade**, escolha **Prefixo do URL** e informe `https://gusanchez1.github.io/`. A opção "Domínio" exige mexer no DNS, o que só será possível com o domínio próprio.
+2. **Verificação:** escolha o método **Tag HTML**. O Google mostra uma tag `<meta name="google-site-verification" content="...">`. Ela fica no `<head>` do [index.html](index.html), publique o site e clique em **Verificar**. **Não apague essa tag depois:** sem ela, a verificação se perde.
+3. **Mapa do site:** no menu **Sitemaps**, informe `sitemap.xml` e clique em **Enviar**. O arquivo é gerado sozinho a cada publicação.
+4. **Indexação:** em **Inspeção de URL**, consulte `https://gusanchez1.github.io/` e clique em **Solicitar indexação**. Faça o mesmo com `https://gusanchez1.github.io/en/`.
+
+O Google costuma levar de alguns dias a algumas semanas para indexar um site novo, e os relatórios só começam a mostrar dados depois disso. Quando tiver o domínio próprio, adicione uma nova propriedade para `https://gusanchez.dev.br/` e repita os passos.
 
 ---
 

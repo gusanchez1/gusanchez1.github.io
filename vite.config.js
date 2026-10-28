@@ -24,7 +24,7 @@ const fromRoot = (file) => fileURLToPath(new URL(`./${file}`, import.meta.url));
 
 export default defineConfig({
   base,
-  plugins: [react(), seoTags()],
+  plugins: [react(), seoTags(), seoFiles()],
   build: {
     // Gera as duas páginas: dist/index.html (português) e dist/en/index.html (inglês)
     rolldownOptions: {
@@ -93,6 +93,42 @@ function seoTags() {
       }
 
       return tags;
+    },
+  };
+}
+
+// Gera no build o robots.txt e o mapa do site (sitemap.xml), usado pelo Google Search Console.
+// O mapa precisa de endereços completos, então só é gerado quando SITE_URL existe (no deploy).
+function seoFiles() {
+  return {
+    name: 'seo-files',
+    generateBundle() {
+      const robots = ['User-agent: *', 'Allow: /'];
+
+      if (siteUrl) {
+        // Data do build no fuso de São Paulo, no formato AAAA-MM-DD
+        const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(new Date());
+        // Cada página lista as versões nos outros idiomas (hreflang), como no <head>
+        const alternates = [
+          ...Object.entries(pages).map(([lang, p]) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${siteUrl}${p.path}"/>`),
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/"/>`,
+        ].join('\n');
+        const urls = Object.values(pages)
+          .map((p) => `  <url>\n    <loc>${siteUrl}${p.path}</loc>\n    <lastmod>${today}</lastmod>\n${alternates}\n  </url>`)
+          .join('\n');
+        const sitemap = [
+          '<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+          urls,
+          '</urlset>',
+          '',
+        ].join('\n');
+
+        this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemap });
+        robots.push('', `Sitemap: ${siteUrl}/sitemap.xml`);
+      }
+
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `${robots.join('\n')}\n` });
     },
   };
 }
