@@ -24,14 +24,15 @@ export const skillGroups = [
   {
     title: 'Back end',
     items: [
-      { name: 'Node.js', status: 'studying', note: 'Servers and APIs in JavaScript; the back end of Nardelli Barber.' },
-      { name: 'Express.js', status: 'studying', note: 'Routes, middleware and REST APIs.' },
+      { name: 'Node.js', status: 'practiced', note: 'Servers and APIs in JavaScript; the back end of Nardelli Barber.' },
+      { name: 'Express.js', status: 'practiced', note: 'Routes, middleware and REST APIs.' },
+      { name: 'EJS', status: 'practiced', note: 'Server-rendered pages with EJS templates and Express.' },
     ],
   },
   {
     title: 'Databases',
     items: [
-      { name: 'MongoDB and Mongoose', status: 'studying', note: 'Document modeling, schemas, validation and queries.' },
+      { name: 'MongoDB and Mongoose', status: 'practiced', note: 'Document modeling, schemas, validation and queries.' },
     ],
   },
   {
@@ -39,6 +40,7 @@ export const skillGroups = [
     items: [
       { name: 'Git and GitHub', status: 'practiced', note: 'Version control and repository hosting.' },
       { name: 'VS Code', status: 'practiced', note: 'Development environment, with built-in terminal and extensions.' },
+      { name: 'Vite', status: 'studying', note: 'Development environment and build for React projects.' },
       { name: 'Claude Code', status: 'practiced', note: 'AI-assisted development, reviewing and testing the generated code.' },
       { name: 'Excel, Word, PowerPoint and Outlook', status: 'practiced', note: 'Management reports, spreadsheets, documents and email, used daily for more than four years.' },
     ],

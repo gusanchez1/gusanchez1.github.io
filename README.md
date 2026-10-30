@@ -90,6 +90,7 @@ gusanchez-portfolio/
 ├── vite.config.js              # caminho base, as duas páginas e as tags que dependem da URL final
 ├── public/                     # arquivos copiados como estão para o site
 │   ├── images/                 # sua foto (800 px e versão de 400 px para o celular)
+│   ├── resume/                 # currículos em PDF (português e inglês)
 │   ├── projects/               # capturas de tela dos projetos
 │   ├── favicon.svg             # ícone da aba
 │   ├── favicon.ico             # o mesmo ícone em .ico (16, 32 e 48 px), para navegadores que não usam SVG
@@ -198,15 +199,26 @@ Outras telas que poderiam entrar: confirmação do agendamento com o link de can
 
 Em [src/content/pt-BR/education.js](src/content/pt-BR/education.js). Datas (`period`) só aparecem quando preenchidas.
 
-### Currículo em PDF (opcional)
+### Currículo em PDF
 
-Coloque o arquivo em `public/` (ex.: `public/curriculo-gustavo-avelino-sanchez.pdf`) e informe o nome em `resume`, no [src/data/links.js](src/data/links.js):
+Os currículos ficam em `public/resume/`, um por idioma, e estão listados em `resume`, no [src/data/links.js](src/data/links.js):
 
 ```js
-resume: 'curriculo-gustavo-avelino-sanchez.pdf',
+resume: [
+  { lang: 'pt-BR', path: 'resume/gustavo-avelino-sanchez-pt.pdf', downloadName: 'Gustavo_Avelino_Sanchez_Curriculo_PT.pdf' },
+  { lang: 'en', path: 'resume/gustavo-avelino-sanchez-en.pdf', downloadName: 'Gustavo_Avelino_Sanchez_Resume_EN.pdf' },
+],
 ```
 
-Aparecem dois botões: "Currículo (PDF)" no topo da página e "Currículo · Abrir PDF" no contato. Os dois abrem o arquivo numa nova aba. Enquanto `resume` for `null`, eles ficam escondidos, para não existir um link que leva a uma página de erro. O `npm test` confere se o arquivo informado existe.
+- **No topo da página:** o botão "Currículo | PT | EN". Cada opção baixa o PDF daquele idioma, e o idioma da página aparece primeiro.
+- **No contato:** o item "Currículo (PDF)", com um link por idioma, o aviso de que é a versão do site e o link "Pedir o currículo completo", que abre um e-mail com o assunto preenchido. Esses textos ficam em `resume`, nos arquivos `ui.js`.
+- **Só a versão do site:** qualquer pessoa pode baixar esses PDFs, então eles não têm telefone nem endereço. A versão completa fica só no seu computador, para mandar a quem pedir.
+- **`downloadName`:** é o nome com que o arquivo é salvo no computador de quem baixa.
+- **Para atualizar um currículo:** substitua o arquivo em `public/resume/` mantendo o nome, rode `npm test` e publique.
+- **Para tirar os botões do site:** deixe a lista vazia (`resume: []`).
+- **O que o `npm test` confere:** se cada arquivo existe, se há um por idioma e se os textos dos botões existem nas duas versões do site.
+
+> Os PDFs ficam públicos: qualquer pessoa que abrir o site pode baixar. Coloque neles só os dados que você aceita deixar na internet.
 
 ### Imagem de compartilhamento (Open Graph)
 
@@ -375,7 +387,7 @@ O site tem duas páginas com o mesmo código:
 - Mude o texto nos **dois** idiomas. O `npm test` compara as versões e falha se uma tiver um item a mais, um campo faltando, ou um link, id ou caminho de imagem diferente.
 - O título e a descrição que aparecem no Google ficam nos HTMLs: `index.html` (português) e `en/index.html` (inglês).
 - Nomes de cursos e instituições (The Web Developer Bootcamp, Curso em Vídeo, Cultura Inglesa, FAM, Fundação Faculdade de Medicina) continuam no original. Na versão em inglês, alguns ganharam uma explicação curta, como "Curso em Vídeo (Brazilian online course)".
-- O currículo em PDF é o mesmo nas duas páginas. Se um dia tiver um currículo em inglês, dá para separar o link por idioma.
+- As duas páginas oferecem os dois currículos; cada uma mostra primeiro o do seu idioma.
 
 **Para mandar a recrutadores de fora**, use direto o link `https://gusanchez1.github.io/en/` (ou `https://gusanchez.dev.br/en/`, quando tiver o domínio).
 
@@ -391,10 +403,10 @@ O site tem duas páginas com o mesmo código:
 - [x] Projeto Nardelli Barber descrito a partir do código e do relato do desenvolvimento, com link para o site no ar.
 - [x] Capturas de tela do site e do painel (painel com dados fictícios).
 - [x] Versão em inglês em `/en/` ([seção 9](#9-versão-em-inglês)).
+- [x] Currículos em PDF, em português e em inglês, para baixar pelo site ([como atualizar](#currículo-em-pdf)).
 
 **A fazer**
 
-- [ ] Adicionar o **currículo em PDF** ([veja como](#currículo-em-pdf-opcional)). Para vagas no exterior, vale ter uma versão em inglês.
 - [ ] Colocar os links no **LinkedIn** (campo "Site" e seção "Destaque"), no repositório (engrenagem ao lado de **About** → "Use your GitHub Pages website") e no perfil do GitHub. Se o LinkedIn mostrar uma prévia antiga, use o [Post Inspector](https://www.linkedin.com/post-inspector/).
 - [ ] Manter cargos, datas e textos iguais no site, no LinkedIn e no currículo.
 - [ ] Ler as duas versões do site uma vez e ajustar qualquer frase que não soe como você.

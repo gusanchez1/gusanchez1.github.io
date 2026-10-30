@@ -6,9 +6,13 @@ export const links = {
   linkedin: 'https://www.linkedin.com/in/gustavo-avelino-sanchez-5a799aa1/',
   instagram: 'https://www.instagram.com/uguhz/',
 
-  // Currículo em PDF (opcional). Coloque o arquivo na pasta public/ e informe o nome,
-  // por exemplo: 'curriculo-gustavo-avelino-sanchez.pdf'. Com null, o botão não aparece.
-  resume: null,
+  // Currículos em PDF, um por idioma, na pasta public/resume/. Para atualizar, substitua o arquivo
+  // mantendo o nome. `downloadName` é o nome com que o arquivo é salvo no computador de quem baixa.
+  // Com a lista vazia ([]), os botões de currículo não aparecem.
+  resume: [
+    { lang: 'pt-BR', path: 'resume/gustavo-avelino-sanchez-pt.pdf', downloadName: 'Gustavo_Avelino_Sanchez_Curriculo_PT.pdf' },
+    { lang: 'en', path: 'resume/gustavo-avelino-sanchez-en.pdf', downloadName: 'Gustavo_Avelino_Sanchez_Resume_EN.pdf' },
+  ],
 };
 
 // Monta o link "mailto:" com um assunto já preenchido.

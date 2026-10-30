@@ -89,6 +89,13 @@
   color: var(--text-faint);
 }
 
+.career__period {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
 .career__note {
   margin-top: 0.3rem;
   font-size: 0.9rem;

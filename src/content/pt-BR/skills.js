@@ -25,14 +25,15 @@ export const skillGroups = [
   {
     title: 'Back-end',
     items: [
-      { name: 'Node.js', status: 'studying', note: 'Servidores e APIs em JavaScript; base do back-end do Nardelli Barber.' },
-      { name: 'Express.js', status: 'studying', note: 'Rotas, middlewares e APIs REST.' },
+      { name: 'Node.js', status: 'practiced', note: 'Servidores e APIs em JavaScript; base do back-end do Nardelli Barber.' },
+      { name: 'Express.js', status: 'practiced', note: 'Rotas, middlewares e APIs REST.' },
+      { name: 'EJS', status: 'practiced', note: 'Páginas renderizadas no servidor, com templates EJS e Express.' },
     ],
   },
   {
     title: 'Banco de dados',
     items: [
-      { name: 'MongoDB e Mongoose', status: 'studying', note: 'Modelagem de documentos, schemas, validações e consultas.' },
+      { name: 'MongoDB e Mongoose', status: 'practiced', note: 'Modelagem de documentos, schemas, validações e consultas.' },
     ],
   },
   {
@@ -40,6 +41,7 @@ export const skillGroups = [
     items: [
       { name: 'Git e GitHub', status: 'practiced', note: 'Versionamento de código e hospedagem de repositórios.' },
       { name: 'VS Code', status: 'practiced', note: 'Ambiente de desenvolvimento, com terminal e extensões integrados.' },
+      { name: 'Vite', status: 'studying', note: 'Ambiente de desenvolvimento e build dos projetos React.' },
       { name: 'Claude Code', status: 'practiced', note: 'Desenvolvimento assistido por IA, com revisão e testes do código gerado.' },
       { name: 'Excel, Word, PowerPoint e Outlook', status: 'practiced', note: 'Relatórios gerenciais, planilhas, documentos e e-mails, em uso diário por mais de quatro anos.' },
     ],

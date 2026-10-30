@@ -42,10 +42,8 @@ export default function About() {
               {career.stops.map((stop) => (
                 <li key={stop.title} className="career__stop">
                   <span className="career__role">{stop.title}</span>
-                  <span className="career__place">
-                    {stop.place}
-                    {stop.period && ` · ${stop.period}`}
-                  </span>
+                  <span className="career__place">{stop.place}</span>
+                  {stop.period && <span className="career__period">{stop.period}</span>}
                   {stop.note && <span className="career__note">{stop.note}</span>}
                 </li>
               ))}

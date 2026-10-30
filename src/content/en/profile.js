@@ -55,24 +55,25 @@ export const profile = {
       {
         title: 'Office Messenger',
         place: 'Fundação Faculdade de Medicina (FFM)',
-        period: 'Apr 2022',
+        period: 'Apr 2022 – Dec 2023',
         note: 'Delivered documents, mail and supplies between departments.',
       },
       {
         title: 'Administrative Aide',
         place: 'FFM · Billing',
+        period: 'Dec 2023 – Dec 2024',
         note: 'Documents, spreadsheets, email and request tracking.',
       },
       {
         title: 'Administrative Assistant',
         place: 'FFM · Billing',
-        period: 'until Aug 2026',
+        period: 'Dec 2024 – Aug 2026',
         note: 'Management reports and helping organize and assign the team’s tasks.',
       },
       {
         title: 'Freelance Web Developer',
         place: 'Nardelli Barber',
-        period: '2026',
+        period: 'Oct 2026',
         note: 'Booking system used every day by the client.',
       },
     ],

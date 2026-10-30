@@ -55,24 +55,25 @@ export const profile = {
       {
         title: 'Office Boy/Mensageiro',
         place: 'Fundação Faculdade de Medicina (FFM)',
-        period: 'abr. 2022',
+        period: 'abr. 2022 – dez. 2023',
         note: 'Distribuição de documentos, correspondências e materiais entre os setores.',
       },
       {
         title: 'Auxiliar Administrativo',
         place: 'FFM · Faturamento',
+        period: 'dez. 2023 – dez. 2024',
         note: 'Documentos, planilhas, e-mails e acompanhamento de demandas.',
       },
       {
         title: 'Assistente Administrativo',
         place: 'FFM · Faturamento',
-        period: 'até ago. 2026',
+        period: 'dez. 2024 – ago. 2026',
         note: 'Relatórios gerenciais e apoio à organização e distribuição das atividades da equipe.',
       },
       {
         title: 'Desenvolvedor web freelance',
         place: 'Nardelli Barber',
-        period: '2026',
+        period: 'out. 2026',
         note: 'Sistema de agendamento em uso diário pelo cliente.',
       },
     ],

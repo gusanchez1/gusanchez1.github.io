@@ -1,6 +1,7 @@
 import { content, locale } from '../content/index.js';
 import { links } from '../data/links.js';
 import { asset } from '../lib/asset.js';
+import { resumeFiles } from '../lib/resume.js';
 import { useCurrentTime } from '../hooks/useCurrentTime.js';
 import ExternalLink from '../components/ExternalLink.jsx';
 import Icon from '../components/Icon.jsx';
@@ -77,11 +78,26 @@ export default function Hero() {
                 <Icon name="mail" />
                 {ui.hero.contactCta}
               </a>
-              {links.resume && (
-                <ExternalLink className="btn" href={asset(links.resume)}>
-                  <Icon name="file" />
-                  {ui.hero.resumeCta}
-                </ExternalLink>
+              {resumeFiles.length > 0 && (
+                // "Currículo | PT | EN": cada opção baixa o PDF do idioma
+                <div className="resume-buttons" role="group" aria-label={ui.resume.label}>
+                  <span className="resume-buttons__label" aria-hidden="true">
+                    <Icon name="file" />
+                    {ui.resume.label}
+                  </span>
+                  {resumeFiles.map((file) => (
+                    <a
+                      key={file.lang}
+                      className="resume-buttons__option"
+                      href={asset(file.path)}
+                      download={file.downloadName}
+                      hrefLang={file.lang}
+                    >
+                      {ui.resume.languages[file.lang].short}
+                      <span className="sr-only"> — {ui.resume.languages[file.lang].name}</span>
+                    </a>
+                  ))}
+                </div>
               )}
             </div>
           </div>

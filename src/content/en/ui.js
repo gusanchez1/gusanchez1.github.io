@@ -12,7 +12,6 @@ export const ui = {
     id: 'top',
     primaryCta: 'Explore projects',
     contactCta: 'Contact',
-    resumeCta: 'Résumé (PDF)',
     localTime: 'in São Paulo',
     scrollHint: 'Keep exploring',
   },
@@ -108,9 +107,20 @@ export const ui = {
     copyFailed: 'Couldn’t copy. Please select the address above.',
     linkedinHint: 'Career and education',
     githubHint: 'Code and studies',
-    resume: 'Résumé',
-    resumeHint: 'Open PDF',
     instagramPrefix: 'I’m also on Instagram:',
+  },
+
+  // Résumé buttons (hero and contact): one link per language, files listed in src/data/links.js
+  resume: {
+    label: 'Résumé',
+    // Note in the contact section: the PDFs on the site have no phone number or address
+    note: 'Website version, without phone number and address.',
+    fullRequest: 'Request the full résumé',
+    fullSubject: 'Full résumé request',
+    languages: {
+      'pt-BR': { short: 'PT', long: 'Portuguese', name: 'Download résumé in Portuguese (PDF)' },
+      en: { short: 'EN', long: 'English', name: 'Download résumé in English (PDF)' },
+    },
   },
 
   footer: {

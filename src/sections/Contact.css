@@ -150,6 +150,48 @@
   transform: translate(2px, -2px);
 }
 
+/* Currículo: o bloco não é um link; os links são os idiomas dentro dele, mais o aviso embaixo */
+.channel--resume {
+  grid-template-areas:
+    'icon name arrow'
+    'icon handle arrow'
+    'icon note arrow';
+}
+
+.channel__note {
+  grid-area: note;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-faint);
+}
+
+.channel--resume:hover .channel__name {
+  color: inherit;
+}
+
+.channel--resume:hover > .icon:first-child {
+  color: var(--text-muted);
+}
+
+/* Com três linhas de texto, o ícone acompanha o título em vez de ficar no meio do bloco */
+.channel--resume > .icon:first-child {
+  align-self: start;
+  margin-top: 0.3rem;
+}
+
+.channel--resume .channel__handle {
+  font-size: 0.95rem;
+}
+
+.channel--resume .link {
+  color: var(--text-muted);
+}
+
+.channel--resume .link:hover {
+  color: var(--accent);
+}
+
 /* Instagram, de forma discreta */
 .contact__secondary {
   margin-top: 1.5rem;

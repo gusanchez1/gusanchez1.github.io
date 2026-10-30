@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { content } from '../content/index.js';
 import { handleFromUrl, links, mailto } from '../data/links.js';
 import { asset } from '../lib/asset.js';
+import { resumeFiles } from '../lib/resume.js';
 import Section from '../components/Section.jsx';
 import ExternalLink from '../components/ExternalLink.jsx';
 import Icon from '../components/Icon.jsx';
@@ -82,14 +83,30 @@ export default function Contact() {
             <Icon name="arrow-up-right" className="channel__arrow" />
           </ExternalLink>
         </li>
-        {links.resume && (
+        {resumeFiles.length > 0 && (
+          // Currículo: um link de download por idioma
           <li>
-            <ExternalLink className="channel" href={asset(links.resume)}>
+            <div className="channel channel--resume">
               <Icon name="file" size={22} />
-              <span className="channel__name">{t.resume}</span>
-              <span className="channel__handle">{t.resumeHint}</span>
-              <Icon name="arrow-up-right" className="channel__arrow" />
-            </ExternalLink>
+              <span className="channel__name">{ui.resume.label} (PDF)</span>
+              <span className="channel__handle">
+                {resumeFiles.map((file, i) => (
+                  <Fragment key={file.lang}>
+                    {i > 0 && ' · '}
+                    <a className="link" href={asset(file.path)} download={file.downloadName} hrefLang={file.lang}>
+                      {ui.resume.languages[file.lang].long}
+                      <span className="sr-only"> — {ui.resume.languages[file.lang].name}</span>
+                    </a>
+                  </Fragment>
+                ))}
+              </span>
+              <span className="channel__note">
+                {ui.resume.note}{' '}
+                <a className="link" href={mailto(ui.resume.fullSubject)}>
+                  {ui.resume.fullRequest}
+                </a>
+              </span>
+            </div>
           </li>
         )}
       </ul>

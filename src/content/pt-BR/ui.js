@@ -13,7 +13,6 @@ export const ui = {
     id: 'inicio',
     primaryCta: 'Explorar projetos',
     contactCta: 'Contato',
-    resumeCta: 'Currículo (PDF)',
     localTime: 'em São Paulo',
     scrollHint: 'Continue explorando',
   },
@@ -109,9 +108,20 @@ export const ui = {
     copyFailed: 'Não foi possível copiar. Selecione o endereço acima.',
     linkedinHint: 'Trajetória e formação',
     githubHint: 'Código e estudos',
-    resume: 'Currículo',
-    resumeHint: 'Abrir PDF',
     instagramPrefix: 'Também estou no Instagram:',
+  },
+
+  // Botões de currículo (topo e contato): um link por idioma, com o arquivo em src/data/links.js
+  resume: {
+    label: 'Currículo',
+    // Aviso no contato: os PDFs do site não têm telefone nem endereço
+    note: 'Versão para o site, sem telefone e endereço.',
+    fullRequest: 'Pedir o currículo completo',
+    fullSubject: 'Pedido de currículo completo',
+    languages: {
+      'pt-BR': { short: 'PT', long: 'Português', name: 'Baixar currículo em português (PDF)' },
+      en: { short: 'EN', long: 'Inglês', name: 'Baixar currículo em inglês (PDF)' },
+    },
   },
 
   footer: {

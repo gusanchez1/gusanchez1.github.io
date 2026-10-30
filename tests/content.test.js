@@ -33,9 +33,18 @@ test('perfis usam HTTPS e o domínio de cada rede', () => {
   assert.equal(handleFromUrl(links.instagram), 'uguhz');
 });
 
-test('currículo, se informado, existe na pasta public/', () => {
-  if (links.resume === null) return;
-  assert.ok(inPublic(links.resume), links.resume);
+test('currículos: um por idioma do site, arquivo em public/ e nome de download em .pdf', () => {
+  assert.ok(Array.isArray(links.resume), 'resume deve ser uma lista ([] quando não houver currículo)');
+  const langs = links.resume.map((file) => file.lang);
+  assert.equal(new Set(langs).size, langs.length, 'dois currículos no mesmo idioma');
+  for (const file of links.resume) {
+    assert.ok(file.lang in locales, `${file.path}: idioma "${file.lang}" não existe no site`);
+    assert.ok(inPublic(file.path), `${file.path}: arquivo não encontrado em public/`);
+    assert.match(file.downloadName, /\.pdf$/, `${file.path}: downloadName deve terminar em .pdf`);
+    for (const [locale, { ui }] of Object.entries(locales)) {
+      assert.ok(ui.resume.languages[file.lang]?.short, `[${locale}] falta o texto do botão do currículo "${file.lang}"`);
+    }
+  }
 });
 
 // ─── Os mesmos testes para cada idioma ───────────────────────────────────────
